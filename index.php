@@ -39,23 +39,39 @@ $hotels = [
 
 ];
 
-if (isset($_GET['parking'])) {
 
-    $temp = [];
+// if (isset($_GET['parking'])) {
+//     $temp = [];
 
+//     foreach ($hotels as $item) {
+//         if ($item['parking'] == $_GET['parking']) {
+//             $temp[] = $item;
 
-    foreach ($hotels as $item) {
-        if ($item['parking'] == $_GET['parking']) {
-            $temp[] = $item;
-            // echo $item['parking'];
-            // echo $_GET['parking'];
+//             // echo $item;
+//         }
+//         ;
+
+//         $hotels = $temp;
+//     }
+//     ;
+
+// }
+// ;
+
+if (isset($_GET['stars']) && !empty($_GET['stars'])) {
+
+    $stars = [];
+
+    foreach ($hotels as $star) {
+        if ($star['vote'] >= $_GET['stars']) {
+            $stars[] = $star;
         }
         ;
-        $hotels = $temp;
-        // var_dump($hotels);
+        $hotels = $stars;
     }
     ;
 }
+;
 ;
 
 
@@ -81,20 +97,20 @@ if (isset($_GET['parking'])) {
 
         <div class="formParking">
             <form action="index.php" methods="GET">
-                <select name="parking" id="parking">
+                <!-- <select name="parking" id="parking">
                     <option value="">Select..</option>
                     <option value="1">Parking</option>
                     <option value="0">Without parking</option>
-                </select>
+                </select> -->
 
-                <!-- <select name="stars" id="stars">
+                <select name="stars" id="stars">
                     <option value="">Select..</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
                     <option value="4">4</option>
                     <option value="5">5</option>
-                </select> -->
+                </select>
 
                 <button type="submit">Submit</button>
             </form>
