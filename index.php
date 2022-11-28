@@ -39,6 +39,27 @@ $hotels = [
 
 ];
 
+if (isset($_GET['parking'])) {
+
+    $temp = [];
+
+
+    foreach ($hotels as $item) {
+        if ($item['parking'] == $_GET['parking']) {
+            $temp[] = $item;
+            // echo $item['parking'];
+            // echo $_GET['parking'];
+        }
+        ;
+        $hotels = $temp;
+        // var_dump($hotels);
+    }
+    ;
+}
+;
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -59,14 +80,22 @@ $hotels = [
         <h1>Hotel</h1>
 
         <div class="formParking">
-            <form action="index.php">
+            <form action="index.php" methods="GET">
                 <select name="parking" id="parking">
                     <option value="">Select..</option>
-                    <option value="true">Parking</option>
-                    <option value="false">Without parking</option>
+                    <option value="1">Parking</option>
+                    <option value="0">Without parking</option>
                 </select>
 
-                <input type="number" name="inputStars" id="inputStars">
+                <!-- <select name="stars" id="stars">
+                    <option value="">Select..</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select> -->
+
                 <button type="submit">Submit</button>
             </form>
         </div>
@@ -101,7 +130,7 @@ $hotels = [
                     <h2>Parcheggio</h2>
                     <?php foreach ($hotels as $hotel) { ?>
                     <div class="p-2">
-                        <?php echo $voto = $hotel['vote'] = true ? 'Si' : 'No' ?>
+                        <?php echo $parking = ($hotel['parking'] == true ? 'Si' : 'No') ?>
                     </div>
                     <?php } ?>
                 </div>
@@ -119,7 +148,7 @@ $hotels = [
                     <h2>Distanza dal centro</h2>
                     <?php foreach ($hotels as $hotel) { ?>
                     <div class="p-2">
-                        <?php echo $hotel['distance_to_center'] ?>
+                        <?php echo $hotel['distance_to_center'] . 'km' ?>
                     </div>
                     <?php } ?>
                 </div>
